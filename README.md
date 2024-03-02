@@ -1,5 +1,8 @@
 # aldea
-Proyecto - Prueba Aldea
+# Proyecto - Prueba Aldea
+
+# Clonar proyecto
+1. Clonar el proyecto git clone <i>https://github.com/odlanyers/aldea.git</i>
 
 # Configuración del ambiente local
 1. Ejecutar el archivo aldea_test.sql que se encuentra en la raíz del proyecto, en un gestor de base de datos de MySQL, para crear la base de datos.
