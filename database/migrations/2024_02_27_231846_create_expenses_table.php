@@ -15,8 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->float('amount');
-            $table->foreignId('category_id')->constrained();
+            $table->foreignId('category_id')->nullable()->default(null)->constrained();
             $table->foreignId('user_id')->constrained();
+            $table->unique(['name', 'user_id']);
             $table->timestamps();
         });
     }

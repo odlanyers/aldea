@@ -2,23 +2,52 @@
 
 namespace App\Imports;
 
-use App\Models\Expense;
-use Maatwebsite\Excel\Concerns\ToModel;
+use App\Models\User;
+use App\Notifications\ImportHasFailedNotification;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Maatwebsite\Excel\Concerns\Importable;
+use Maatwebsite\Excel\Concerns\WithChunkReading;
+use Maatwebsite\Excel\Concerns\WithEvents;
+use Maatwebsite\Excel\Concerns\WithMultipleSheets;
+use Maatwebsite\Excel\Events\ImportFailed;
 
-class ExpensesImport implements ToModel
+class ExpensesImport implements WithMultipleSheets, ShouldQueue, WithChunkReading, WithEvents
 {
-    /**
-    * @param array $row
-    *
-    * @return \Illuminate\Database\Eloquent\Model|null
-    */
-    public function model(array $row)
+    use Importable;
+
+    protected $userId;
+
+    protected $importedBy;
+
+    public function __construct (User $importedBy)
     {
-        // Mapeo de filas del Excel al modelo Expense
-        return new Expense([
-            'name' => $row[0],
-            'amount' => $row[1],
-            'created_at' => $row[2],
-        ]);
+        $this->userId = $importedBy->id;
+        $this->importedBy = $importedBy;
+    }
+
+    /**
+     * @return array classes
+     * 
+     * Filtra solo la primer hoja del archivo para ser importada
+     */
+    public function sheets(): array
+    {
+        return [
+            new FirstSheetImport($this->userId),
+        ];
+    }
+
+    public function chunkSize(): int
+    {
+        return 5;
+    }
+
+    public function registerEvents(): array
+    {
+        return [
+            ImportFailed::class => function(ImportFailed $event) {
+                $this->importedBy->notify(new ImportHasFailedNotification);
+            },
+        ];
     }
 }

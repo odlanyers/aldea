@@ -17,7 +17,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    public const HOME = '/upload-file';
+    public const HOME = 'expense/upload-file';
 
     /**
      * Define your route model bindings, pattern filters, and other route configuration.
