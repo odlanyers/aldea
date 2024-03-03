@@ -29,3 +29,6 @@ npm
 # 5 Migraciones
 5.1. Correr las migraciones y el seeder para poblar la tabla categories <i>php artisan migrate --seed</i>
 5.2. Si se require crear otro usuario, puede hacerse usando el UserFactyory desde tinker. En la consola correr el comando <i>php artisan tinker</i> y ejecutar lo siguiente: <b>\App\Models\User::factory()->create(['name' => 'usuario', 'email' => 'correo@correo.com',]);</b>, recuerda cambiar los valores dentro del array y agregar la clave <i>password</i> si deseas una contraseña personalizada, de lo contrario la contraseña será <i>password</i>, por default. Salir de tinker al finalizar <i>Ctrl+C</i>
+
+# 6 Ejecutar los jobs queue
+6.1. Una vez que se haya hecho la carga de uno o más archivos, correr en consola el comando <i>php artisan queue:work</i> para procesar los jobs que se hayan agragado a la cola de trabajo.
