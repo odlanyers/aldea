@@ -2,21 +2,20 @@
 # Proyecto - Prueba Aldea
 
 # Requerimientos
-Composer
-npm
+Composer, npm
 
 # 1. Clonar proyecto
-1.1. Ir al directorio en donde deseas clonar el proyecto.
+<p>1.1. Ir al directorio en donde deseas clonar el proyecto.</p>
 1.2. Clonar el proyecto git clone <i>https://github.com/odlanyers/aldea.git</i>
 
 # 2. Intalación
-2.1. Correr en consola el comando <i>composer install</i> para instalar el vendor de Laravel y las dependencias del proyecto.
+<p>2.1. Correr en consola el comando <i>composer install</i> para instalar el vendor de Laravel y las dependencias del proyecto.</p>
 2.2. Correr en consola el comando <i>npm install</i> para instalar las dependencias de ui bootstrap.
 
 # 3 Configuración del ambiente local
-3.1. Correr en consola el comando <i>npm run build</i> para compilar las configuraciones necesarias para vite.
-3.2. Ejecutar el archivo aldea_test.sql que se encuentra en la raíz del proyecto, en un gestor de base de datos de MySQL, para crear la base de datos.
-3.3. Copiar el archivo <b>.env.example</b> y renombrarlo como .env
+<p>3.1. Correr en consola el comando <i>npm run build</i> para compilar las configuraciones necesarias para vite.</p>
+<p>3.2. Ejecutar el archivo aldea_test.sql que se encuentra en la raíz del proyecto, en un gestor de base de datos de MySQL, para crear la base de datos.</p>
+<p>3.3. Copiar el archivo <b>.env.example</b> y renombrarlo como .env</p>
 3.4. Correr en consola el comando <i>php artisan key:generate</i> para generar la llave de encriptación de Laravel.
 3.5. Abrir el archivo y ubicar las variables de entorno <i>DB_DATABASE, DB_USERNAME y DB_PASSWORD</i>, y editar la configuración para la conexión a la base de datos, según se requiera.
 3.6. En el archivo .env ubicar la variable de entorno <i>QUEUE_CONNECTION</i> y cambiar el valor a <i>database</i>
